@@ -1,4 +1,8 @@
-# notes
+# notes Application
+
+Using SQFLite
+
+High Priority / Low Priority
 
 A new Flutter project.
 
