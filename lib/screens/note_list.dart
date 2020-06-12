@@ -40,29 +40,36 @@ class NoteListState extends State<NoteList> {
   }
 
   ListView getNoteListView() {
-    TextStyle titleStyle = Theme.of(context).textTheme.subhead;
+    //TextStyle titleStyle = Theme.of(context).textTheme.subhead;
 
     return ListView.builder(
       itemCount: count,
       itemBuilder: (BuildContext context, int position) {
         return Card(
-          color: Colors.white,
+          color: getPriorityColor(this.noteList[position].priority),
           elevation: 2.0,
           child: ListTile(
             leading: CircleAvatar(
               backgroundColor:
                   getPriorityColor(this.noteList[position].priority),
-              child: getPriorityIcon(this.noteList[position].priority),
+              child: Icon(
+                Icons.play_arrow,
+                color: Colors.black,
+              ),
             ),
             title: Text(
               this.noteList[position].title,
-              style: titleStyle,
+              style:
+                  TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
             ),
-            subtitle: Text(this.noteList[position].date),
+            subtitle: Text(
+              this.noteList[position].date,
+              style: TextStyle(color: Colors.black),
+            ),
             trailing: GestureDetector(
               child: Icon(
                 Icons.delete,
-                color: Colors.grey,
+                color: Colors.black,
               ),
               onTap: () {
                 _delete(context, noteList[position]);
@@ -90,21 +97,6 @@ class NoteListState extends State<NoteList> {
 
       default:
         return Colors.yellow;
-    }
-  }
-
-  // Returns the priority icon
-  Icon getPriorityIcon(int priority) {
-    switch (priority) {
-      case 1:
-        return Icon(Icons.play_arrow);
-        break;
-      case 2:
-        return Icon(Icons.keyboard_arrow_right);
-        break;
-
-      default:
-        return Icon(Icons.keyboard_arrow_right);
     }
   }
 
